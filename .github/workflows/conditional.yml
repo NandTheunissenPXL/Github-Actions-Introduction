@@ -3,10 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: Target environment
         type: choice
-        required: true
-        default: development
         options:
           - development
           - staging
@@ -15,11 +12,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Production message
-        if: github.event.inputs.environment == 'production'
+      - if: github.event.inputs.environment == 'production'
         run: echo "Deploying to production!"
-      - name: Test mode message
-        if: github.event.inputs.environment == 'development' || github.event.inputs.environment == 'staging'
+      - if: github.event.inputs.environment != 'production'
         run: echo "Running in test mode"
-      - name: Always show environment
-        run: 'echo "Environment: ${{ github.event.inputs.environment }}"'
+      - run: echo "Gekozen omgeving is ${{ github.event.inputs.environment }}"
