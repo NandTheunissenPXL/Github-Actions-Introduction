@@ -22,4 +22,4 @@ jobs:
         if: github.event.inputs.environment == 'development' || github.event.inputs.environment == 'staging'
         run: echo "Running in test mode"
       - name: Always show environment
-        run: echo "Environment: ${{ github.event.inputs.environment }}"
+        run: echo "Selected environment is ${{ github.event.inputs.environment }}"
