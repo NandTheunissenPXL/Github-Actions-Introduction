@@ -1,0 +1,9 @@
+name: Files
+on: workflow_dispatch
+jobs:
+  files:
+    runs-on: ubuntu-latest
+    steps:
+      - run: mkdir mydir
+      - run: echo "Hello from GH Actions" > mydir/hello.txt
+      - run: ls -la mydir && cat mydir/hello.txt
